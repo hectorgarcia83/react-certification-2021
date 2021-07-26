@@ -5,10 +5,10 @@ import './Layout.styles.css';
 
 function Layout({ children }) {
   return (
-    <main className="container">
+    <div>
       <Header />
       {children}
-    </main>
+    </div>
   );
 }
 

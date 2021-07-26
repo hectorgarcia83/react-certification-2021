@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdMenu } from 'react-icons/md';
-import { Checkbox } from 'semantic-ui-react';
+import { Switch } from '@material-ui/core';
 
 import {
   Button,
@@ -25,7 +25,7 @@ function Header() {
       </SearchInputWrapper>
       <Space />
       <Toggle>
-        <Checkbox toggle id="toggle" />
+        <Switch name="checkedB" color="primary" id="toggle" />
         <ToggleText htmlFor="toggle">Dark mode</ToggleText>
       </Toggle>
       <Avatar>

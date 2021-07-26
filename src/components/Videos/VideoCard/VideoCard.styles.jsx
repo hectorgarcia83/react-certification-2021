@@ -25,17 +25,21 @@ export const CardContent = styled.div`
 `;
 
 export const CardTitle = styled.h2`
-  font-size: 1.25rem;
+  padding: 0;
+  margin: 0;
+  font-size: 1.1rem;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   line-height: 1.6;
   letter-spacing: 0.0075em;
   margin-bottom: 0.35em;
 `;
 
 export const CardDescription = styled.p`
+  padding: 0;
+  margin: 0;
   color: rgba(0, 0, 0, 0.54);
-  font-size: 0.9rem;
+  font-size: 0.78rem;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   font-weight: 400;
   line-height: 1.43;

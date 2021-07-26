@@ -11,7 +11,7 @@ function ListVideos() {
         {videosData.items
           .filter((item) => item.id.kind === 'youtube#video')
           .map((video) => (
-            <VideoCard video={video} />
+            <VideoCard key={video.id.videoId} video={video} />
           ))}
       </List>
     </div>

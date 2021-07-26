@@ -41,6 +41,7 @@ export const Toggle = styled.div`
 `;
 
 export const ToggleText = styled.label`
+  cursor: pointer;
   margin-left: 10px;
   color: white !important;
   font-size: 17px !important;
