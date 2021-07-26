@@ -21,19 +21,33 @@ export const Button = styled.button`
 `;
 
 export const SearchInputWrapper = styled.div`
-  margin-left: 50px;
+  margin-left: 15px;
+  width: 100%;
+  @media (min-width: 770px) {
+    width: 240px;
+    margin-left: 50px;
+  }
 `;
-
-export const ThemeSwitch = styled.div``;
 
 export const Space = styled.div`
   flex-grow: 1;
+`;
+
+export const Toggle = styled.div`
+  display: none;
+  @media (min-width: 770px) {
+    display: inline;
+  }
 `;
 
 export const ToggleText = styled.label`
   margin-left: 10px;
   color: white !important;
   font-size: 17px !important;
+  display: none;
+  @media (min-width: 770px) {
+    display: inline;
+  }
 `;
 
 export const Avatar = styled.div`
@@ -47,4 +61,8 @@ export const Avatar = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  display: none;
+  @media (min-width: 770px) {
+    display: inherit;
+  }
 `;

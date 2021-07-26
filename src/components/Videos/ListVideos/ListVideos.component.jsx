@@ -6,13 +6,15 @@ import { List } from './ListVideos.styles';
 
 function ListVideos() {
   return (
-    <List>
-      {videosData.items
-        .filter((item) => item.id.kind === 'youtube#video')
-        .map((video) => (
-          <VideoCard video={video} />
-        ))}
-    </List>
+    <div>
+      <List>
+        {videosData.items
+          .filter((item) => item.id.kind === 'youtube#video')
+          .map((video) => (
+            <VideoCard video={video} />
+          ))}
+      </List>
+    </div>
   );
 }
 

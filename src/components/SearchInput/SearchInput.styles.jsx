@@ -4,10 +4,14 @@ export const Wrapper = styled.div`
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.15);
   height: 35px;
-  width: 240px;
+  width: 100%;
   display: flex;
+  padding-right: 8px;
   &:hover {
     background-color: rgba(255, 255, 255, 0.25);
+  }
+  @media (min-width: 770px) {
+    width: 240px;
   }
 `;
 
@@ -26,7 +30,7 @@ export const Input = styled.input`
   outline: none;
   color: white;
   font-size: 18px;
-  width: 180px;
+  width: 100%;
   ::placeholder,
   ::-webkit-input-placeholder {
     color: #8faabb;

@@ -9,6 +9,7 @@ import {
   Space,
   ToggleText,
   SearchInputWrapper,
+  Toggle,
 } from './Header.styles';
 import SearchInput from '../SearchInput';
 import avatar from '../../assets/avatar.svg';
@@ -23,8 +24,10 @@ function Header() {
         <SearchInput />
       </SearchInputWrapper>
       <Space />
-      <Checkbox toggle id="toggle" />
-      <ToggleText htmlFor="toggle">Dark mode</ToggleText>
+      <Toggle>
+        <Checkbox toggle id="toggle" />
+        <ToggleText htmlFor="toggle">Dark mode</ToggleText>
+      </Toggle>
       <Avatar>
         <img src={avatar} alt="avatar" width="20px" height="20px" />
       </Avatar>
