@@ -5,9 +5,9 @@ import {
   CardContent,
   CardTitle,
   CardDescription,
-} from './ListVideosCard.styles';
+} from './VideoCard.styles';
 
-function ListVideoCard({ video }) {
+function VideoCard({ video }) {
   const {
     snippet: { title, description, thumbnails },
   } = video;
@@ -22,4 +22,4 @@ function ListVideoCard({ video }) {
   );
 }
 
-export default ListVideoCard;
+export default VideoCard;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ListVideos from '../../components/ListVideos';
+import ListVideos from '../../components/Videos/ListVideos';
 import { Title, TitleWrapper } from './Home.styles';
 
 function HomePage() {

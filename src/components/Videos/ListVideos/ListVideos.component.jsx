@@ -1,6 +1,6 @@
 import React from 'react';
-import ListVideoCard from '../ListVideosCard/ListVideosCard.component';
-import { videosData } from '../../mock/youtube-videos-mock';
+import VideoCard from '../VideoCard/VideoCard.component';
+import { videosData } from '../../../mock/youtube-videos-mock';
 
 import { List } from './ListVideos.styles';
 
@@ -10,7 +10,7 @@ function ListVideos() {
       {videosData.items
         .filter((item) => item.id.kind === 'youtube#video')
         .map((video) => (
-          <ListVideoCard video={video} />
+          <VideoCard video={video} />
         ))}
     </List>
   );
