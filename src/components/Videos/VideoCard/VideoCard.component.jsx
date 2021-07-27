@@ -7,13 +7,10 @@ import {
   CardDescription,
 } from './VideoCard.styles';
 
-function VideoCard({ video }) {
-  const {
-    snippet: { title, description, thumbnails },
-  } = video;
+function VideoCard({ title, description, image }) {
   return (
     <Card>
-      <CardHeader image={thumbnails.medium.url} />
+      <CardHeader image={image} />
       <CardContent>
         <CardTitle>{title}</CardTitle>
         <CardDescription>{description}</CardDescription>

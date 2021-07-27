@@ -1,20 +1,20 @@
 import React from 'react';
 import VideoCard from '../VideoCard/VideoCard.component';
-import { videosData } from '../../../mock/youtube-videos-mock';
 
 import { List } from './ListVideos.styles';
 
-function ListVideos() {
+function ListVideos({ videos }) {
   return (
-    <div>
-      <List>
-        {videosData.items
-          .filter((item) => item.id.kind === 'youtube#video')
-          .map((video) => (
-            <VideoCard key={video.id.videoId} video={video} />
-          ))}
-      </List>
-    </div>
+    <List data-testid="list-videos">
+      {videos.map((video) => (
+        <VideoCard
+          key={video.id.videoId}
+          title={video.snippet.title}
+          description={video.snippet.description}
+          image={video.snippet.thumbnails.medium.url}
+        />
+      ))}
+    </List>
   );
 }
 

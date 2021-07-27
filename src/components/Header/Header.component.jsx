@@ -16,7 +16,7 @@ import avatar from '../../assets/avatar.svg';
 
 function Header() {
   return (
-    <HeaderBar>
+    <HeaderBar data-testid="headerBar">
       <Button>
         <MdMenu />
       </Button>

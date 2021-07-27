@@ -1,6 +1,9 @@
 import React from 'react';
 import ListVideos from '../../components/Videos/ListVideos';
 import { Title, TitleWrapper } from './Home.styles';
+import { videosData } from '../../mock/youtube-videos-mock';
+
+const videos = videosData.items.filter((item) => item.id.kind === 'youtube#video');
 
 function HomePage() {
   return (
@@ -8,7 +11,7 @@ function HomePage() {
       <TitleWrapper>
         <Title>Welcome to the Challenge!</Title>
       </TitleWrapper>
-      <ListVideos />
+      <ListVideos videos={videos} />
     </section>
   );
 }
