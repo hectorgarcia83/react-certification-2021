@@ -7,9 +7,9 @@ import {
   CardDescription,
 } from './VideoCard.styles';
 
-function VideoCard({ title, description, image }) {
+function VideoCard({ id, title, description, image, onClick }) {
   return (
-    <Card>
+    <Card onClick={() => onClick(id)}>
       <CardHeader image={image} />
       <CardContent>
         <CardTitle>{title}</CardTitle>

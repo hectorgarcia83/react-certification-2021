@@ -14,14 +14,14 @@ import {
 import SearchInput from '../SearchInput';
 import avatar from '../../assets/avatar.svg';
 
-function Header() {
+function Header({ onSearch }) {
   return (
     <HeaderBar data-testid="headerBar">
       <Button>
         <MdMenu />
       </Button>
       <SearchInputWrapper>
-        <SearchInput />
+        <SearchInput onSearch={onSearch} />
       </SearchInputWrapper>
       <Space />
       <Toggle>

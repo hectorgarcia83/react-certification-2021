@@ -14,3 +14,10 @@ export const Title = styled.h1`
   padding: 0;
   margin: 0;
 `;
+
+export const Loading = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+`;

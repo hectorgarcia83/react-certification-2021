@@ -8,6 +8,11 @@ export const Card = styled.div`
   height: 345px;
   margin: 10px;
   cursor: pointer;
+  &:hover {
+    -webkit-box-shadow: 0px 2px 21px -1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 2px 21px -1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 2px 21px -1px rgba(0, 0, 0, 0.75);
+  }
 `;
 
 export const CardHeader = styled.div`
