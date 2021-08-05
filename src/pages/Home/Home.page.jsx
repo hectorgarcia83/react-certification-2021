@@ -32,8 +32,8 @@ function HomePage() {
   return (
     <section>
       <Header onSearch={handleSearchChangeText} />
-      {loading && (
-        <Loading>
+      {(loading || typeof loading === 'undefined') && (
+        <Loading data-testid="loading">
           <img
             src="https://www.tmogroup.asia/wp-content/uploads/2018/05/001gif.gif?x96783"
             alt="loading"
@@ -44,7 +44,7 @@ function HomePage() {
       {!loading && !videoIdSelected && videos.length > 0 && (
         <>
           <TitleWrapper>
-            <Title>Welcome to the Challenge!</Title>
+            <Title data-testid="home-title">Welcome to the Challenge!</Title>
           </TitleWrapper>
           <ListVideos
             videos={videos}

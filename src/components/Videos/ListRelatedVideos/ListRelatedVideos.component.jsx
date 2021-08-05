@@ -3,7 +3,7 @@ import ListRelatedVideoItem from '../ListRelatedVideosItem';
 
 function ListRelatedVideos({ videos, onSelectVideo }) {
   return (
-    <div>
+    <div data-testid="list_related_videos">
       {videos.map((video) => (
         <ListRelatedVideoItem
           onClick={onSelectVideo}

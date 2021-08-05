@@ -16,8 +16,9 @@ function VideoDetail({ video }) {
   const { height } = useWindowResize();
 
   return (
-    <div>
+    <div data-testid="video_player">
       <iframe
+        data-testid="iframe"
         width="100%"
         height={height - VIDEO_PLAYER_MARGIN_BOTTOM}
         src={`//www.youtube.com/embed/${video.id}`}
@@ -27,9 +28,9 @@ function VideoDetail({ video }) {
         title={video.snippet.title}
       />
       <div>
-        <Title>{video.snippet.title}</Title>
-        <Description>{video.snippet.description}</Description>
-        <Statistics>
+        <Title data-testid="title">{video.snippet.title}</Title>
+        <Description data-testid="description">{video.snippet.description}</Description>
+        <Statistics data-testid="statistics">
           <Views>{video.statistics.viewCount} views</Views>
           <Likes>
             <MdThumbUp size={24} style={{ marginRight: 5 }} />

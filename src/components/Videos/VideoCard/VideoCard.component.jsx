@@ -9,7 +9,7 @@ import {
 
 function VideoCard({ id, title, description, image, onClick }) {
   return (
-    <Card onClick={() => onClick(id)}>
+    <Card onClick={() => onClick(id)} data-testid={`card_${id}`}>
       <CardHeader image={image} />
       <CardContent>
         <CardTitle>{title}</CardTitle>

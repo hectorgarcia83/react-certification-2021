@@ -9,7 +9,7 @@ const HEADER_HEIGHT = 75;
 function VideoDetail({ video, relatedVideos, onSelectVideo }) {
   const { height } = useWindowResize();
   return (
-    <Wrapper height={`${height - HEADER_HEIGHT}px`}>
+    <Wrapper height={`${height - HEADER_HEIGHT}px`} data-testid="video_detail">
       <VideoPlayerSection>
         <VideoPlayer video={video} />
       </VideoPlayerSection>
