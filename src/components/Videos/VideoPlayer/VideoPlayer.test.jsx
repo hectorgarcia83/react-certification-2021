@@ -49,7 +49,7 @@ beforeEach(() => {
 });
 
 describe('Video Player', () => {
-  test('Should contains iframe, title, description and statistics', () => {
+  test('Should Contains iframe, title, description and statistics', () => {
     const iframeElement = screen.queryByTestId(/iframe/i);
     expect(iframeElement).toBeInTheDocument();
 

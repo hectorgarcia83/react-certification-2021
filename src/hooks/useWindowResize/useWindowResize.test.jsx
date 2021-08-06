@@ -11,7 +11,7 @@ describe('Window Resize Hook', () => {
     expect(result.current[0]).toBeUndefined();
   });
 
-  it(`should do some stuff on window resize event`, () => {
+  it(`Should do some stuff on window resize event`, () => {
     const { result } = renderHook(() => useWindowResize());
     expect(result.current.width).toEqual(800);
     expect(result.current.height).toEqual(400);

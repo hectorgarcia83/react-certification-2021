@@ -7,7 +7,7 @@ beforeEach(() => {
 });
 
 describe('Header Component', () => {
-  test('Render BurgerMenu button', () => {
+  test('Render BurgerMenu Button', () => {
     const burgerMenuBtn = screen.getByRole('button');
     expect(burgerMenuBtn).toBeInTheDocument();
   });

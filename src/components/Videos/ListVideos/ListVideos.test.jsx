@@ -80,7 +80,7 @@ beforeEach(() => {
 });
 
 describe('ListVideos component', () => {
-  test('contains VideoCard components for each video', () => {
+  test('Contains VideoCard components for each video', () => {
     expect(screen.getAllByRole('heading').length).toBe(mockData.length);
   });
 });

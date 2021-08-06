@@ -50,7 +50,7 @@ beforeEach(() => {
 });
 
 describe('Video Detail', () => {
-  test('Should contain VideoPlayer and List Related Videos', () => {
+  test('Should Contain VideoPlayer and List Related Videos', () => {
     const videoPlayer = screen.queryByTestId(/video_player/i);
     expect(videoPlayer).toBeInTheDocument();
 

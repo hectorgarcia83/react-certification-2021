@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback } from 'react';
 import axios from 'axios';
 
 const key = process.env.REACT_APP_GOOGLE_API_KEY;
@@ -9,6 +9,10 @@ export default function useFetchVideos() {
   const [videoDetail, setVideoDetail] = useState();
   const [loading, setLoading] = useState();
   const $timeoutRef = useRef();
+
+  useEffect(() => {
+    return () => {};
+  }, []);
 
   const searchVideos = useCallback(async (search) => {
     if ($timeoutRef.current) {

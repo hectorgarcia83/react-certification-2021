@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import SearchInput from './SearchInput.component';
 
 describe('SearchField Component', () => {
-  test('Render searchfield component', () => {
+  test('Render Searchfield component', () => {
     render(<SearchInput />);
 
     const searchField = screen.getByPlaceholderText('Search');

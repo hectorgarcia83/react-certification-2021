@@ -7,7 +7,7 @@ beforeEach(() => {
 });
 
 describe('Home page', () => {
-  test('Should contain Title and List of Videos after load videos from youtube', async () => {
+  test('Should contain Title and List of Videos after load videos from Youtube', async () => {
     expect(screen.queryByTestId('loading')).toBeInTheDocument();
 
     await waitFor(() => screen.getByTestId('home-title'), { timeout: 2000 });

@@ -80,7 +80,7 @@ beforeEach(() => {
 });
 
 describe('ListRelatedVideos', () => {
-  test('Should render a list of related videos', async () => {
+  test('Should Render a list of related videos', async () => {
     const List = screen.queryByTestId(/list_related_videos/i);
     expect(List).toBeInTheDocument();
 

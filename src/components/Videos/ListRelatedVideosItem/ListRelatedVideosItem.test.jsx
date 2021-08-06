@@ -20,7 +20,7 @@ beforeEach(() => {
 });
 
 describe('ListRelatedVideoItem', () => {
-  test('Render Related video item', () => {
+  test('Render related video item', () => {
     const titleElement = screen.queryByText('Title');
     expect(titleElement).toBeInTheDocument();
 

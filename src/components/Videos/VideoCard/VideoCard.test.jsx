@@ -21,7 +21,7 @@ beforeEach(() => {
 });
 
 describe('VideoCard', () => {
-  test('Render video values on card', () => {
+  test('Render Video values on card', () => {
     const titleElement = screen.queryByText('Title');
     expect(titleElement).toBeInTheDocument();
 
