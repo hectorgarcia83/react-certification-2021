@@ -18,12 +18,12 @@ describe('Header Component', () => {
   });
 
   test('Render Switch component', () => {
-    const switchToggle = screen.getByRole('checkbox');
+    const switchToggle = screen.getByTestId('toggle');
     expect(switchToggle).toBeInTheDocument();
   });
 
   test('Render Image avatar', () => {
-    const avatar = screen.getByRole('img');
+    const avatar = screen.getByTestId('avatar');
     expect(avatar).toBeInTheDocument();
   });
 });

@@ -24,12 +24,12 @@ function Header({ onSearch }) {
         <SearchInput onSearch={onSearch} />
       </SearchInputWrapper>
       <Space />
-      <Toggle>
+      <Toggle data-testid="toggle">
         <Switch name="checkedB" color="primary" id="toggle" />
         <ToggleText htmlFor="toggle">Dark mode</ToggleText>
       </Toggle>
       <Avatar>
-        <img src={avatar} alt="avatar" width="20px" height="20px" />
+        <img src={avatar} alt="avatar" width="20px" height="20px" data-testid="avatar" />
       </Avatar>
     </HeaderBar>
   );
