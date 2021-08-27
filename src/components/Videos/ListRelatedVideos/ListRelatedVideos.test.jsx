@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ListRelatedVideos from './ListRelatedVideos.component';
+import ThemeProvider from '../../../state/Theme/ThemeProvider';
 
 const mockRelatedVideos = [
   {
@@ -76,7 +77,11 @@ const mockRelatedVideos = [
 ];
 
 beforeEach(() => {
-  render(<ListRelatedVideos videos={mockRelatedVideos} />);
+  render(
+    <ThemeProvider>
+      <ListRelatedVideos videos={mockRelatedVideos} />
+    </ThemeProvider>
+  );
 });
 
 describe('ListRelatedVideos', () => {

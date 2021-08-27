@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import VideoDetail from './VideoDetail.component';
+import ThemeProvider from '../../../state/Theme/ThemeProvider';
 
 const mockVideo = {
   id: 'nmXMgqjQzls',
@@ -46,7 +47,11 @@ const mockVideo = {
 const mockRelatedVideos = [];
 
 beforeEach(() => {
-  render(<VideoDetail video={mockVideo} relatedVideos={mockRelatedVideos} />);
+  render(
+    <ThemeProvider>
+      <VideoDetail video={mockVideo} relatedVideos={mockRelatedVideos} />
+    </ThemeProvider>
+  );
 });
 
 describe('Video Detail', () => {

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { MdMenu } from 'react-icons/md';
 import { Switch } from '@material-ui/core';
-
+import ThemeContext from '../../state/Theme/ThemeContext';
 import {
   Button,
   HeaderBar,
@@ -14,18 +14,34 @@ import {
 import SearchInput from '../SearchInput';
 import avatar from '../../assets/avatar.svg';
 
-function Header({ onSearch }) {
+function Header() {
+  const { state, dispatch } = useContext(ThemeContext);
+  const [switchChecked, setSwitchChecked] = useState(false);
+
+  const toggleChecked = (event) => {
+    setSwitchChecked(event.target.checked);
+    dispatch({
+      type: 'SWITCH_THEME',
+    });
+  };
+
   return (
-    <HeaderBar data-testid="headerBar">
+    <HeaderBar theme={state.theme} data-testid="headerBar">
       <Button>
         <MdMenu />
       </Button>
       <SearchInputWrapper>
-        <SearchInput onSearch={onSearch} />
+        <SearchInput />
       </SearchInputWrapper>
       <Space />
       <Toggle data-testid="toggle">
-        <Switch name="checkedB" color="primary" id="toggle" />
+        <Switch
+          name="checkedB"
+          color="secondary"
+          id="toggle"
+          checked={switchChecked}
+          onChange={toggleChecked}
+        />
         <ToggleText htmlFor="toggle">Dark mode</ToggleText>
       </Toggle>
       <Avatar>

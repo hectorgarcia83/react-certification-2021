@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 
+export const Body = styled.div`
+  padding-top: 30px;
+  background-color: ${(props) => props.theme.bodyBackground};
+`;
+
 export const TitleWrapper = styled.div`
-  margin: 30px;
   text-align: center;
 `;
 
 export const Title = styled.h1`
+  color: ${(props) => props.theme.fontColor};
   font-size: 3.3rem;
   font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
   font-weight: 300;

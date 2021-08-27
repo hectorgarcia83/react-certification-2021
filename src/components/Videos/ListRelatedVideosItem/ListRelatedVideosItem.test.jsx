@@ -1,6 +1,7 @@
 import React from 'react';
 import { screen, render } from '@testing-library/react';
 import ListRelatedVideosItem from './ListRelatedVideos.component';
+import ThemeProvider from '../../../state/Theme/ThemeProvider';
 
 const mockData = {
   id: '12344',
@@ -11,11 +12,13 @@ const mockData = {
 
 beforeEach(() => {
   render(
-    <ListRelatedVideosItem
-      id={mockData.id}
-      title={mockData.title}
-      image={mockData.image}
-    />
+    <ThemeProvider>
+      <ListRelatedVideosItem
+        id={mockData.id}
+        title={mockData.title}
+        image={mockData.image}
+      />
+    </ThemeProvider>
   );
 });
 

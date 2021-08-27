@@ -1,9 +1,17 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Header from './Header.component';
+import ThemeProvider from '../../state/Theme/ThemeProvider';
+import VideoProvider from '../../state/Videos/VideoProvider';
 
 beforeEach(() => {
-  render(<Header />);
+  render(
+    <ThemeProvider>
+      <VideoProvider>
+        <Header />
+      </VideoProvider>
+    </ThemeProvider>
+  );
 });
 
 describe('Header Component', () => {

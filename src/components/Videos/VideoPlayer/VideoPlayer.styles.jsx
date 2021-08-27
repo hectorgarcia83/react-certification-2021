@@ -3,21 +3,24 @@ import styled from 'styled-components';
 export const Title = styled.p`
   font-weight: 400;
   margin: 0;
+  color: ${(props) => props.theme.fontColor};
 `;
 
 export const Description = styled.p`
-  color: rgba(0, 0, 0, 0.54);
+  color: ${(props) => props.theme.fontColor};
   margin: 0;
   font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.43;
   letter-spacing: 0.01071em;
+  background-color: ${(props) => props.theme.bodyBackground};
 `;
 
 export const Statistics = styled.div`
   display: flex;
-  color: #606060;
+  color: ${(props) => props.theme.fontColor};
   font-size: 0.9rem;
+  background-color: ${(props) => props.theme.bodyBackground};
 `;
 
 export const Views = styled.div`

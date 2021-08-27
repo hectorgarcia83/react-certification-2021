@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { MdSearch } from 'react-icons/md';
+import VideoContext from '../../state/Videos/VideoContext';
 import { Wrapper, Icon, Input } from './SearchInput.styles';
 
-function SearchInput({ onSearch }) {
-  const [searchValue, setSearchValue] = useState('Wizeline');
+function SearchInput() {
+  const { state, dispatch } = useContext(VideoContext);
+  const [searchValue, setSearchValue] = useState(state.searchText);
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
-    onSearch(e.target.value);
+    dispatch({
+      type: 'SEARCH',
+      payload: e.target.value,
+    });
   };
 
   return (

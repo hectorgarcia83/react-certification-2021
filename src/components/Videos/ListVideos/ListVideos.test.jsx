@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ListVideos from './ListVideos.component';
+import ThemeProvider from '../../../state/Theme/ThemeProvider';
 
 const mockData = [
   {
@@ -76,7 +77,11 @@ const mockData = [
 ];
 
 beforeEach(() => {
-  render(<ListVideos videos={mockData} />);
+  render(
+    <ThemeProvider>
+      <ListVideos videos={mockData} />
+    </ThemeProvider>
+  );
 });
 
 describe('ListVideos component', () => {

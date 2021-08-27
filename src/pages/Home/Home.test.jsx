@@ -1,9 +1,17 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import HomePage from './Home.page';
+import ThemeProvider from '../../state/Theme/ThemeProvider';
+import VideoProvider from '../../state/Videos/VideoProvider';
 
 beforeEach(() => {
-  render(<HomePage />);
+  render(
+    <ThemeProvider>
+      <VideoProvider>
+        <HomePage />
+      </VideoProvider>
+    </ThemeProvider>
+  );
 });
 
 describe('Home page', () => {

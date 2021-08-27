@@ -1,6 +1,9 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import VideoCard from './VideoCard.component';
+// import VideoProvider from '../../../state/Videos/VideoProvider';
+import ThemeProvider from '../../../state/Theme/ThemeProvider';
+// import Theme from '../../../theme';
 
 const mockData = {
   id: '12344',
@@ -11,12 +14,14 @@ const mockData = {
 
 beforeEach(() => {
   render(
-    <VideoCard
-      key={mockData.id}
-      title={mockData.title}
-      description={mockData.description}
-      image={mockData.image}
-    />
+    <ThemeProvider>
+      <VideoCard
+        key={mockData.id}
+        title={mockData.title}
+        description={mockData.description}
+        image={mockData.image}
+      />
+    </ThemeProvider>
   );
 });
 

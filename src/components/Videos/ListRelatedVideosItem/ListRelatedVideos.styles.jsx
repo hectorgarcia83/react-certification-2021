@@ -6,6 +6,7 @@ export const Item = styled.div`
   padding-top: 5px;
   padding-bottom: 5px;
   cursor: pointer;
+  background-color: ${(props) => props.theme.bodyBackground};
 `;
 
 export const Thumbnail = styled.img`
@@ -21,4 +22,5 @@ export const Title = styled.p`
   line-height: 1.5;
   letter-spacing: 0.00938em;
   margin-left: 10px;
+  color: ${(props) => props.theme.fontColor};
 `;
