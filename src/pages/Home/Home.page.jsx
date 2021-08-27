@@ -1,37 +1,69 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useEffect, useState, useCallback, useContext } from 'react';
+import ThemeContext from '../../state/Theme/ThemeContext';
+import VideoContext from '../../state/Videos/VideoContext';
+import useFetchVideos from '../../hooks/useFetchVideos';
+import ListVideos from '../../components/Videos/ListVideos';
+import VideoDetail from '../../components/Videos/VideoDetail';
+import Header from '../../components/Header';
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+import { Body, Title, TitleWrapper, Loading } from './Home.styles';
 
 function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+  const { state } = useContext(ThemeContext);
+  const { state: stateVideo } = useContext(VideoContext);
+  const [videoIdSelected, setVideoIdSelected] = useState();
+  const { searchVideos, videos, getVideoDetail, videoDetail, loading } = useFetchVideos();
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+  const handleSelectVideo = useCallback(
+    (videoId) => {
+      setVideoIdSelected(videoId);
+      getVideoDetail(videoId).catch(null);
+    },
+    [getVideoDetail]
+  );
+
+  useEffect(() => {
+    searchVideos('').catch(null);
+  }, [searchVideos, handleSelectVideo]);
+
+  useEffect(() => {
+    searchVideos(stateVideo.searchText).catch(null);
+  }, [stateVideo.searchText, searchVideos]);
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
+    <section>
+      <Header />
+      {(loading || typeof loading === 'undefined') && (
+        <Loading data-testid="loading">
+          <img
+            src="https://www.tmogroup.asia/wp-content/uploads/2018/05/001gif.gif?x96783"
+            alt="loading"
+            width="250"
+          />
+        </Loading>
       )}
+      <Body theme={state.theme}>
+        {!loading && !videoIdSelected && videos.length > 0 && (
+          <>
+            <TitleWrapper>
+              <Title data-testid="home-title" theme={state.theme}>
+                Welcome to the Challenge!
+              </Title>
+            </TitleWrapper>
+            <ListVideos
+              videos={videos}
+              onSelectVideo={(videoId) => handleSelectVideo(videoId)}
+            />
+          </>
+        )}
+        {!loading && videoIdSelected && videoDetail && (
+          <VideoDetail
+            video={videoDetail}
+            relatedVideos={videos}
+            onSelectVideo={(videoId) => handleSelectVideo(videoId)}
+          />
+        )}
+      </Body>
     </section>
   );
 }
