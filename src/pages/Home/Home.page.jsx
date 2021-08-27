@@ -20,6 +20,7 @@ function HomePage() {
 
   useEffect(() => {
     searchVideos(stateVideo.searchText).catch(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stateVideo.searchText]);
 
   return (

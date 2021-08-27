@@ -22,11 +22,13 @@ function VideoDetailPage() {
   useEffect(() => {
     const video = getVideo(videoId);
     setVideoDetail(video);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoId]);
 
   useEffect(() => {
     const videos = list();
     setFavoriteVideos(videos);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

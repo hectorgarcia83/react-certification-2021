@@ -5,8 +5,8 @@ import { Error, Input, Title, Buttons, Button, Wrapper, Label } from './Login.st
 
 export default function Login({ onClose }) {
   const { dispatch } = useContext(AuthContext);
-  const [username, setUsername] = useState('wizeline');
-  const [password, setPassword] = useState('Rocks!');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const [error, setError] = useState();
 
   const handleLogin = useCallback(async () => {

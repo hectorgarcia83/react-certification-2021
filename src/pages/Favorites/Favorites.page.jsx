@@ -16,6 +16,7 @@ function FavoritesPage() {
   useEffect(() => {
     const videos = list();
     setFavoriteVideos(videos);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleSelectVideo = (videoId) => {
