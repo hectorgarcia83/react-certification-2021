@@ -1,11 +1,12 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useEffect, useState, useRef, useCallback, useContext } from 'react';
 import axios from 'axios';
+import VideoContext from '../../state/Videos/VideoContext';
 
 const key = process.env.REACT_APP_GOOGLE_API_KEY;
 const apiUrlBase = `https://www.googleapis.com/youtube/v3/`;
 
 export default function useFetchVideos() {
-  const [videos, setVideos] = useState([]);
+  const { dispatch } = useContext(VideoContext);
   const [videoDetail, setVideoDetail] = useState();
   const [loading, setLoading] = useState();
   const $timeoutRef = useRef();
@@ -14,7 +15,7 @@ export default function useFetchVideos() {
     return () => {};
   }, []);
 
-  const searchVideos = useCallback(async (search) => {
+  const searchVideos = async (search) => {
     if ($timeoutRef.current) {
       clearTimeout($timeoutRef.current);
     }
@@ -25,14 +26,17 @@ export default function useFetchVideos() {
         const url = `${apiUrlBase}search?key=${key}&part=id,snippet&maxResults=25&q=${search}`;
         const { data } = await axios.get(url);
         const listVideos = data.items.filter((item) => item.id.kind === 'youtube#video');
-        setVideos(listVideos);
+        dispatch({
+          type: 'SET_LIST',
+          payload: listVideos,
+        });
       } catch (error) {
         console.log('Error getting videos', { error });
       } finally {
         setLoading(false);
       }
     }, 500);
-  }, []);
+  };
 
   const getVideoDetail = useCallback(async (id) => {
     try {
@@ -48,5 +52,5 @@ export default function useFetchVideos() {
     }
   }, []);
 
-  return { searchVideos, videos, getVideoDetail, videoDetail, loading };
+  return { searchVideos, getVideoDetail, videoDetail, loading };
 }

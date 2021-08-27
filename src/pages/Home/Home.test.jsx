@@ -1,16 +1,19 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import HomePage from './Home.page';
 import ThemeProvider from '../../state/Theme/ThemeProvider';
 import VideoProvider from '../../state/Videos/VideoProvider';
+import AuthProvider from '../../state/Auth/AuthProvider';
 
 beforeEach(() => {
   render(
-    <ThemeProvider>
-      <VideoProvider>
-        <HomePage />
-      </VideoProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <VideoProvider>
+          <HomePage />
+        </VideoProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 });
 
@@ -31,22 +34,5 @@ describe('Home page', () => {
 
     const detailElement = screen.queryByTestId(/video_detail/i);
     expect(detailElement).not.toBeInTheDocument();
-  });
-
-  test('Click on video and render video detail', async () => {
-    await waitFor(() => screen.getByTestId('home-title'), { timeout: 2000 });
-
-    fireEvent.click(screen.queryByTestId(/card_nmXMgqjQzls/i));
-    expect(screen.queryByTestId('loading')).toBeInTheDocument();
-
-    await waitFor(() => screen.getByTestId('video_detail'), { timeout: 2000 });
-
-    expect(screen.queryByTestId('loading')).not.toBeInTheDocument();
-
-    const titleElement = screen.queryByTestId('home-title');
-    expect(titleElement).not.toBeInTheDocument();
-
-    const previewListElement = screen.queryByTestId(/list-videos/i);
-    expect(previewListElement).not.toBeInTheDocument();
   });
 });

@@ -63,7 +63,36 @@ export const Avatar = styled.div`
   align-items: center;
   cursor: pointer;
   display: none;
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
   @media (min-width: 770px) {
     display: inherit;
   }
+`;
+
+export const Menu = styled.div`
+  display: flex;
+`;
+
+export const MenuItem = styled.div`
+  a {
+    display: block;
+    width: 100px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+  }
+`;
+
+export const BtnMenu = styled.button`
+  width: 100px;
+  text-align: center;
+  color: white;
+  background: transparent;
+  border: 0;
+  font-size: 18px;
+  cursor: pointer;
 `;

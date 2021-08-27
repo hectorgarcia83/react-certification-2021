@@ -1,9 +1,21 @@
 import styled from 'styled-components';
 
+export const TitleRow = styled.div`
+  display: flex;
+  margin-bottom: 8px;
+`;
+
 export const Title = styled.p`
   font-weight: 400;
   margin: 0;
   color: ${(props) => props.theme.fontColor};
+  flex: 1;
+`;
+
+export const FavoriteButton = styled.button`
+  width: 150px;
+  height: 30px;
+  margin-right: 5px;
 `;
 
 export const Description = styled.p`

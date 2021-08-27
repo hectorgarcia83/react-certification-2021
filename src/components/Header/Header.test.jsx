@@ -3,14 +3,17 @@ import { render, screen } from '@testing-library/react';
 import Header from './Header.component';
 import ThemeProvider from '../../state/Theme/ThemeProvider';
 import VideoProvider from '../../state/Videos/VideoProvider';
+import AuthProvider from '../../state/Auth/AuthProvider';
 
 beforeEach(() => {
   render(
-    <ThemeProvider>
-      <VideoProvider>
-        <Header />
-      </VideoProvider>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <VideoProvider>
+          <Header />
+        </VideoProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 });
 

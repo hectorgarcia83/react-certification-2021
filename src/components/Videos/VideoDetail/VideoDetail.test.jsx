@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import VideoDetail from './VideoDetail.component';
 import ThemeProvider from '../../../state/Theme/ThemeProvider';
+import AuthProvider from '../../../state/Auth/AuthProvider';
 
 const mockVideo = {
   id: 'nmXMgqjQzls',
@@ -48,9 +49,11 @@ const mockRelatedVideos = [];
 
 beforeEach(() => {
   render(
-    <ThemeProvider>
-      <VideoDetail video={mockVideo} relatedVideos={mockRelatedVideos} />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <VideoDetail video={mockVideo} relatedVideos={mockRelatedVideos} />
+      </ThemeProvider>
+    </AuthProvider>
   );
 });
 
