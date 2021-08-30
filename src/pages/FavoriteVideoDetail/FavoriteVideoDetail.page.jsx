@@ -1,6 +1,7 @@
 import React, { useEffect, useContext, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import ThemeContext from '../../state/Theme/ThemeContext';
+import VideoContext from '../../state/Videos/VideoContext';
 import useFavorites from '../../hooks/useFavorites';
 import VideoDetail from '../../components/Videos/VideoDetail';
 import Header from '../../components/Header';
@@ -11,9 +12,11 @@ function VideoDetailPage() {
   const history = useHistory();
   const { videoId } = useParams();
   const { state } = useContext(ThemeContext);
-  const { getVideo, list } = useFavorites();
+  const {
+    state: { favoriteVideos },
+  } = useContext(VideoContext);
+  const { getVideo } = useFavorites();
   const [videoDetail, setVideoDetail] = useState();
-  const [favoriteVideos, setFavoriteVideos] = useState([]);
 
   const handleSelectVideo = (id) => {
     history.push(`/favorites/${id}`);
@@ -24,12 +27,6 @@ function VideoDetailPage() {
     setVideoDetail(video);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [videoId]);
-
-  useEffect(() => {
-    const videos = list();
-    setFavoriteVideos(videos);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <section>

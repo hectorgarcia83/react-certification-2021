@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 import Login from '../Login';
 import ThemeContext from '../../state/Theme/ThemeContext';
 import AuthContext from '../../state/Auth/AuthContext';
+import useAuth from '../../hooks/useAuth';
+import ThemeTypes from '../../theme';
 
 import {
   HeaderBar,
@@ -20,10 +22,17 @@ import SearchInput from '../SearchInput';
 import avatar from '../../assets/avatar.svg';
 
 function Header() {
-  const { state, dispatch } = useContext(ThemeContext);
-  const { state: stateAuth, dispatch: dispatchAuth } = useContext(AuthContext);
-  const [switchChecked, setSwitchChecked] = useState(false);
+  const {
+    state: { theme },
+    switchTheme,
+  } = useContext(ThemeContext);
+  const {
+    state: { user },
+    logout,
+  } = useContext(AuthContext);
+  const [switchChecked, setSwitchChecked] = useState(theme === ThemeTypes.dark);
   const [openModalLogin, setOpenModalLogin] = useState(false);
+  const { cleanSession } = useAuth();
 
   const handleCloseLoginForm = () => {
     setOpenModalLogin(false);
@@ -31,20 +40,16 @@ function Header() {
 
   const toggleChecked = (event) => {
     setSwitchChecked(event.target.checked);
-    dispatch({
-      type: 'SWITCH_THEME',
-    });
+    switchTheme();
   };
 
   const handleLogOut = () => {
-    dispatchAuth({
-      type: 'LOG_OUT',
-      payload: undefined,
-    });
+    logout();
+    cleanSession();
   };
 
   const handleClickAvatar = () => {
-    if (stateAuth.user) {
+    if (user) {
       handleLogOut();
     } else {
       setOpenModalLogin(true);
@@ -57,11 +62,11 @@ function Header() {
 
   return (
     <>
-      <HeaderBar theme={state.theme} data-testid="headerBar">
+      <HeaderBar theme={theme} data-testid="headerBar">
         <SearchInputWrapper>
           <SearchInput />
         </SearchInputWrapper>
-        {stateAuth.user && (
+        {user && (
           <Menu>
             <MenuItem>
               <Link to="/">Home</Link>
@@ -74,8 +79,11 @@ function Header() {
             </MenuItem>
           </Menu>
         )}
-        {!stateAuth.user && (
+        {!user && (
           <Menu>
+            <MenuItem>
+              <Link to="/">Home</Link>
+            </MenuItem>
             <MenuItem>
               <BtnMenu onClick={handleLogin}>Login</BtnMenu>
             </MenuItem>
@@ -94,7 +102,7 @@ function Header() {
         </Toggle>
         <Avatar onClick={(e) => handleClickAvatar(e)}>
           <img
-            src={stateAuth.user ? stateAuth.user.avatarUrl : avatar}
+            src={user ? user.avatarUrl : avatar}
             alt="avatar"
             width="20px"
             height="20px"

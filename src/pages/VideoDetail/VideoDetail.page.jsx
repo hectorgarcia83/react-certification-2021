@@ -12,7 +12,9 @@ function VideoDetailPage() {
   const history = useHistory();
   const { videoId } = useParams();
   const { state } = useContext(ThemeContext);
-  const { state: stateVideo } = useContext(VideoContext);
+  const {
+    state: { videos },
+  } = useContext(VideoContext);
   const { getVideoDetail, videoDetail, loading } = useFetchVideos();
 
   const handleSelectVideo = (id) => {
@@ -39,8 +41,9 @@ function VideoDetailPage() {
         {videoDetail && (
           <VideoDetail
             video={videoDetail}
-            relatedVideos={stateVideo.videos}
+            relatedVideos={videos}
             onSelectVideo={(id) => handleSelectVideo(id)}
+            data-testid="video_detail"
           />
         )}
       </Body>

@@ -5,7 +5,7 @@ function NotFoundPage() {
   return (
     <section>
       <Body>
-        <Title>Not Found</Title>
+        <Title data-testid="title">Not Found</Title>
       </Body>
     </section>
   );

@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Body = styled.div`
   padding-top: 30px;
   background-color: ${(props) => props.theme.bodyBackground};
+  height: 100vh;
 `;
 
 export const TitleWrapper = styled.div`
@@ -25,8 +26,11 @@ export const Loading = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 100px;
+  height: 100vh;
 `;
 
 export const Message = styled.h3`
   text-align: center;
+  color: ${(props) => props.theme.fontColor};
+  height: 100vh;
 `;

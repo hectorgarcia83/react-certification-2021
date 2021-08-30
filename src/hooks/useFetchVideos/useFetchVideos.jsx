@@ -6,7 +6,7 @@ const key = process.env.REACT_APP_GOOGLE_API_KEY;
 const apiUrlBase = `https://www.googleapis.com/youtube/v3/`;
 
 export default function useFetchVideos() {
-  const { dispatch } = useContext(VideoContext);
+  const { updateList } = useContext(VideoContext);
   const [videoDetail, setVideoDetail] = useState();
   const [loading, setLoading] = useState();
   const $timeoutRef = useRef();
@@ -26,10 +26,7 @@ export default function useFetchVideos() {
         const url = `${apiUrlBase}search?key=${key}&part=id,snippet&maxResults=25&q=${search}`;
         const { data } = await axios.get(url);
         const listVideos = data.items.filter((item) => item.id.kind === 'youtube#video');
-        dispatch({
-          type: 'SET_LIST',
-          payload: listVideos,
-        });
+        updateList(listVideos);
       } catch (error) {
         console.log('Error getting videos', { error });
       } finally {

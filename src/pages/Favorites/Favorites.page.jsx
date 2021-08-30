@@ -1,7 +1,7 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import ThemeContext from '../../state/Theme/ThemeContext';
-import useFavorites from '../../hooks/useFavorites';
+import VideoContext from '../../state/Videos/VideoContext';
 import ListVideos from '../../components/Videos/ListVideos';
 import Header from '../../components/Header';
 
@@ -10,14 +10,9 @@ import { Body, Message } from './Favorites.styles';
 function FavoritesPage() {
   const history = useHistory();
   const { state } = useContext(ThemeContext);
-  const { list } = useFavorites();
-  const [favoriteVideos, setFavoriteVideos] = useState([]);
-
-  useEffect(() => {
-    const videos = list();
-    setFavoriteVideos(videos);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const {
+    state: { favoriteVideos },
+  } = useContext(VideoContext);
 
   const handleSelectVideo = (videoId) => {
     history.push(`/favorites/${videoId}`);
@@ -36,7 +31,9 @@ function FavoritesPage() {
             />
           </>
         ) : (
-          <Message>You haven&apos;t added any video to your favorites yet</Message>
+          <Message data-testid="message" theme={state.theme}>
+            You haven&apos;t added any video to your favorites yet
+          </Message>
         )}
       </Body>
     </section>

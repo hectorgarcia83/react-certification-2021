@@ -21,7 +21,9 @@ const VIDEO_PLAYER_MARGIN_BOTTOM = 200;
 function VideoDetail({ video }) {
   const [inFavoriteList, setInFavoreList] = useState(false);
   const { state } = useContext(ThemeContext);
-  const { state: stateAuth } = useContext(AuthContext);
+  const {
+    state: { user },
+  } = useContext(AuthContext);
   const { height } = useWindowResize();
   const { add: addFavorite, remove: removeVideo, exist } = useFavorites();
 
@@ -56,10 +58,10 @@ function VideoDetail({ video }) {
           <Title data-testid="title" theme={state.theme}>
             {video.snippet.title}
           </Title>
-          {!inFavoriteList && stateAuth.user && (
+          {!inFavoriteList && user && (
             <FavoriteButton onClick={handleAddFavorite}>Add to Favorite</FavoriteButton>
           )}
-          {inFavoriteList && stateAuth.user && (
+          {inFavoriteList && user && (
             <FavoriteButton onClick={handleRemoveVideo}>
               Remove from Favorite
             </FavoriteButton>

@@ -1,10 +1,12 @@
 import React, { useCallback, useState, useContext } from 'react';
 import AuthContext from '../../state/Auth/AuthContext';
 import loginApi from '../../api/login.api';
+import useAuth from '../../hooks/useAuth';
 import { Error, Input, Title, Buttons, Button, Wrapper, Label } from './Login.styles';
 
 export default function Login({ onClose }) {
-  const { dispatch } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
+  const { saveSession } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState();
@@ -16,17 +18,15 @@ export default function Login({ onClose }) {
         setError('Please, complete the form');
       } else {
         const user = await loginApi(username, password);
-        dispatch({
-          type: 'LOG_IN',
-          payload: user,
-        });
+        login(user);
+        saveSession(user);
         onClose();
       }
     } catch (err) {
       console.log('Login error', { err });
       setError('Invalid credentials');
     }
-  }, [dispatch, onClose, password, username]);
+  }, [login, onClose, password, username, saveSession]);
 
   return (
     <Wrapper>
@@ -37,6 +37,7 @@ export default function Login({ onClose }) {
         type="email"
         onChange={(e) => setUsername(e.target.value)}
         value={username}
+        data-testid="username_input"
       />
       <Label>Password:</Label>
       <Input
@@ -44,6 +45,7 @@ export default function Login({ onClose }) {
         type="password"
         onChange={(e) => setPassword(e.target.value)}
         value={password}
+        data-testid="password_input"
       />
       {error && <Error>{error}</Error>}
       <Buttons>

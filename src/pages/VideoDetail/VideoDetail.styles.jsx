@@ -10,4 +10,5 @@ export const Loading = styled.div`
   justify-content: center;
   align-items: center;
   margin-top: 100px;
+  height: 100vh;
 `;

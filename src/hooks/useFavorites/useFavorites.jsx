@@ -1,6 +1,11 @@
-const FAVORITES_KEY = 'FAVORITES';
+import { useContext } from 'react';
+import VideoContext from '../../state/Videos/VideoContext';
+
+export const FAVORITES_KEY = 'FAVORITES';
 
 export default function useFavorites() {
+  const { updateFavoritesList } = useContext(VideoContext);
+
   const add = (video) => {
     const currentList = JSON.parse(localStorage.getItem(FAVORITES_KEY));
     let newList = [];
@@ -10,6 +15,7 @@ export default function useFavorites() {
       newList = [...currentList, video];
     }
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(newList));
+    updateFavoritesList(newList);
   };
 
   const remove = (id) => {
@@ -17,6 +23,7 @@ export default function useFavorites() {
     const position = list.findIndex((item) => item.id === id);
     list.splice(position, 1);
     localStorage.setItem(FAVORITES_KEY, JSON.stringify(list));
+    updateFavoritesList(list);
   };
 
   const exist = (id) => {

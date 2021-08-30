@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import ThemeContext from '../../state/Theme/ThemeContext';
@@ -11,7 +12,9 @@ import { Body, Title, TitleWrapper, Loading } from './Home.styles';
 function HomePage() {
   const history = useHistory();
   const { state } = useContext(ThemeContext);
-  const { state: stateVideo } = useContext(VideoContext);
+  const {
+    state: { searchText, videos },
+  } = useContext(VideoContext);
   const { searchVideos, loading } = useFetchVideos();
 
   const handleSelectVideo = (videoId) => {
@@ -19,9 +22,9 @@ function HomePage() {
   };
 
   useEffect(() => {
-    searchVideos(stateVideo.searchText).catch(null);
+    searchVideos(searchText).catch(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [stateVideo.searchText]);
+  }, [searchText]);
 
   return (
     <section>
@@ -36,7 +39,7 @@ function HomePage() {
         </Loading>
       )}
       <Body theme={state.theme}>
-        {!loading && stateVideo.videos.length > 0 && (
+        {!loading && videos.length > 0 && (
           <>
             <TitleWrapper>
               <Title data-testid="home-title" theme={state.theme}>
@@ -44,7 +47,7 @@ function HomePage() {
               </Title>
             </TitleWrapper>
             <ListVideos
-              videos={stateVideo.videos}
+              videos={videos}
               onSelectVideo={(videoId) => handleSelectVideo(videoId)}
             />
           </>

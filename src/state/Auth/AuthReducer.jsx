@@ -1,4 +1,8 @@
-export const initialState = { user: undefined };
+import { SESSION_KEY } from '../../hooks/useAuth/useAuth';
+
+const sessionSaved = JSON.parse(localStorage.getItem(SESSION_KEY));
+
+export const initialState = { user: sessionSaved };
 
 const AuthReducer = (state, action) => {
   switch (action.type) {

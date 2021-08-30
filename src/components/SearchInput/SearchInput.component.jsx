@@ -4,15 +4,15 @@ import VideoContext from '../../state/Videos/VideoContext';
 import { Wrapper, Icon, Input } from './SearchInput.styles';
 
 function SearchInput() {
-  const { state, dispatch } = useContext(VideoContext);
-  const [searchValue, setSearchValue] = useState(state.searchText);
+  const {
+    state: { searchText },
+    search,
+  } = useContext(VideoContext);
+  const [searchValue, setSearchValue] = useState(searchText);
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value);
-    dispatch({
-      type: 'SEARCH',
-      payload: e.target.value,
-    });
+    search(e.target.value);
   };
 
   return (

@@ -18,11 +18,6 @@ beforeEach(() => {
 });
 
 describe('Header Component', () => {
-  test('Render BurgerMenu Button', () => {
-    const burgerMenuBtn = screen.getByRole('button');
-    expect(burgerMenuBtn).toBeInTheDocument();
-  });
-
   test('Render searchfield component', () => {
     const searchField = screen.getByRole('textbox');
     expect(searchField).toBeInTheDocument();
