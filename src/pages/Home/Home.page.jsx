@@ -1,37 +1,58 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import ThemeContext from '../../state/Theme/ThemeContext';
+import VideoContext from '../../state/Videos/VideoContext';
+import useFetchVideos from '../../hooks/useFetchVideos';
+import ListVideos from '../../components/Videos/ListVideos';
+import Header from '../../components/Header';
 
-import { useAuth } from '../../providers/Auth';
-import './Home.styles.css';
+import { Body, Title, TitleWrapper, Loading } from './Home.styles';
 
 function HomePage() {
   const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
+  const { state } = useContext(ThemeContext);
+  const {
+    state: { searchText, videos },
+  } = useContext(VideoContext);
+  const { searchVideos, loading } = useFetchVideos();
 
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
+  const handleSelectVideo = (videoId) => {
+    history.push(`/video/${videoId}`);
+  };
+
+  useEffect(() => {
+    searchVideos(searchText).catch(null);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchText]);
 
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
+    <section>
+      <Header />
+      {(loading || typeof loading === 'undefined') && (
+        <Loading data-testid="loading">
+          <img
+            src="https://www.tmogroup.asia/wp-content/uploads/2018/05/001gif.gif?x96783"
+            alt="loading"
+            width="250"
+          />
+        </Loading>
       )}
+      <Body theme={state.theme}>
+        {!loading && videos.length > 0 && (
+          <>
+            <TitleWrapper>
+              <Title data-testid="home-title" theme={state.theme}>
+                Welcome to the Challenge!
+              </Title>
+            </TitleWrapper>
+            <ListVideos
+              videos={videos}
+              onSelectVideo={(videoId) => handleSelectVideo(videoId)}
+            />
+          </>
+        )}
+      </Body>
     </section>
   );
 }
